@@ -2,55 +2,55 @@
 
 ## AI-Powered National Cyber Defense Platform for Indonesia
 
-GarudaShield AI adalah platform keamanan digital berbasis Artificial Intelligence yang dirancang untuk membantu masyarakat Indonesia mendeteksi ancaman siber secara realtime.
+GarudaShield AI is an AI-powered cybersecurity platform designed to help Indonesian citizens detect and prevent digital threats in real time.
 
-Project ini dibuat untuk mendukung visi Indonesia Emas 2045 dengan meningkatkan kesadaran keamanan digital nasional melalui teknologi AI, threat intelligence, dan realtime phishing detection.
+This project was created to support the vision of Indonesia Emas 2045 by improving national digital security awareness through artificial intelligence, threat intelligence systems, and real-time phishing detection.
 
 ---
 
-# 🌟 LATAR BELAKANG
+# 🌟 BACKGROUND
 
-Indonesia mengalami peningkatan besar dalam kasus:
+Indonesia has experienced a significant increase in digital threats such as:
 
 * Phishing
-* Scam digital
-* Judi online (Judol)
-* QR Scam
-* Social engineering
+* Online scams
+* Illegal gambling websites
+* QR scams
+* Social engineering attacks
 * Fake login pages
 * Data leaks
 * Brand impersonation
 
-Sebagian besar masyarakat masih sulit membedakan website aman dan website berbahaya.
+Many internet users still struggle to distinguish between safe and dangerous websites.
 
-GarudaShield AI hadir sebagai solusi berbasis AI yang mampu membantu pengguna mendeteksi ancaman digital sebelum menjadi korban.
-
----
-
-# 🎯 TUJUAN PROJECT
-
-✅ Membantu masyarakat mengenali ancaman digital
-✅ Mengurangi penyebaran phishing & scam
-✅ Memberikan sistem analisis keamanan realtime
-✅ Meningkatkan kesadaran cyber security nasional
-✅ Mendukung ekosistem digital Indonesia yang lebih aman
+GarudaShield AI was built as a solution to help users identify cyber threats before becoming victims.
 
 ---
 
-# 🚀 FITUR UTAMA
+# 🎯 PROJECT GOALS
+
+✅ Help users recognize digital threats
+✅ Reduce phishing and scam incidents
+✅ Provide real-time security analysis
+✅ Increase cybersecurity awareness in Indonesia
+✅ Support a safer digital ecosystem for Indonesia
+
+---
+
+# 🚀 MAIN FEATURES
 
 ## 🧠 AI Threat Scanner
 
-Sistem AI menganalisis:
+The AI engine analyzes:
 
-* URL mencurigakan
-* Keyword phishing
-* Scam pattern
-* Fake verification
+* Suspicious URLs
+* Phishing keywords
+* Scam patterns
+* Fake verification systems
 * Brand impersonation
-* Judol indicators
+* Illegal gambling indicators
 
-AI akan menghasilkan:
+The system generates:
 
 * Security Score
 * Threat Type
@@ -61,42 +61,42 @@ AI akan menghasilkan:
 
 ## 🕶️ Dark Web Monitor
 
-Monitoring simulasi aktivitas ilegal digital seperti:
+Simulated monitoring system for:
 
-* Kebocoran email
+* Email leaks
 * Scam campaigns
-* Judol domains
-* Suspicious traffic
+* Illegal gambling domains
+* Suspicious digital activity
 
 ---
 
 ## 📱 QR Scam Detector
 
-Mendeteksi QR berbahaya seperti:
+Detects dangerous QR codes such as:
 
-* Fake QRIS
-* Scam QR
-* Redirect phishing
-* Payment manipulation
+* Fake QRIS payments
+* QR phishing redirects
+* Scam QR codes
+* Payment manipulation attempts
 
 ---
 
 ## 📡 Live Threat Feed
 
-Menampilkan simulasi realtime:
+Displays simulated real-time cybersecurity activities:
 
-* Scam activity
-* Phishing detection
+* Scam detection
+* Phishing alerts
 * Threat analysis
-* Judol blocking
+* Illegal gambling domain blocking
 
 ---
 
-# ⚙️ CARA KERJA AI
+# ⚙️ HOW THE AI WORKS
 
-## Flow System
+## System Flow
 
-```txt
+```txt id="v6q1ot"
 USER INPUT
 ↓
 AI URL ANALYZER
@@ -116,9 +116,9 @@ Realtime Result Dashboard
 
 ---
 
-# 🧠 AI Detection System
+# 🧠 AI DETECTION SYSTEM
 
-GarudaShield AI menggunakan pendekatan:
+GarudaShield AI uses multiple detection approaches:
 
 * Pattern Recognition
 * Threat Intelligence
@@ -154,9 +154,9 @@ GarudaShield AI menggunakan pendekatan:
 
 ---
 
-# 📊 SECURITY SCORE
+# 📊 SECURITY SCORE SYSTEM
 
-GarudaShield AI menggunakan sistem penilaian:
+GarudaShield AI uses a security scoring mechanism:
 
 | Score    | Status     |
 | -------- | ---------- |
@@ -166,17 +166,17 @@ GarudaShield AI menggunakan sistem penilaian:
 
 ---
 
-# 🔥 CONTOH DETEKSI
+# 🔥 DETECTION EXAMPLES
 
 ## SAFE
 
-```txt
+```txt id="u2nz5l"
 https://google.com
 ```
 
 Output:
 
-```txt
+```txt id="dd5v7u"
 SAFE
 Security Score: 95%
 ```
@@ -185,13 +185,13 @@ Security Score: 95%
 
 ## WARNING
 
-```txt
+```txt id="q5v13x"
 https://free-nitro-event.net
 ```
 
 Output:
 
-```txt
+```txt id="fjlwmv"
 WARNING
 Security Score: 52%
 ```
@@ -200,22 +200,22 @@ Security Score: 52%
 
 ## DANGER
 
-```txt
+```txt id="y1wo1m"
 https://discord-verify.com
 ```
 
 Output:
 
-```txt
+```txt id="qst3qe"
 DANGER
 Security Score: 10%
 ```
 
 ---
 
-# 🏗️ STRUKTUR PROJECT
+# 🏗️ PROJECT STRUCTURE
 
-```txt
+```txt id="pvw7pv"
 app
  ┣ api
  ┃ ┗ scan
@@ -231,15 +231,15 @@ app
 
 ## 1. Clone Repository
 
-```bash
+```bash id="a5d4ra"
 git clone https://github.com/username/garudashield-ai.git
 ```
 
 ---
 
-## 2. Masuk Folder
+## 2. Enter Project Folder
 
-```bash
+```bash id="djpw5t"
 cd garudashield-ai
 ```
 
@@ -247,15 +247,15 @@ cd garudashield-ai
 
 ## 3. Install Dependencies
 
-```bash
+```bash id="k5z7t0"
 npm install
 ```
 
 ---
 
-## 4. Jalankan Project
+## 4. Run Development Server
 
-```bash
+```bash id="ryjjlwm"
 npm run dev
 ```
 
@@ -263,7 +263,7 @@ npm run dev
 
 ## 5. Open Browser
 
-```txt
+```txt id="mnvxuo"
 http://localhost:3000
 ```
 
@@ -271,7 +271,7 @@ http://localhost:3000
 
 # 🚀 DEPLOYMENT
 
-Project dapat dideploy menggunakan:
+This project can be deployed using:
 
 * Railway
 * Vercel
@@ -279,52 +279,52 @@ Project dapat dideploy menggunakan:
 
 Recommended:
 
-```txt
+```txt id="1sgp8f"
 Railway.app
 ```
 
 ---
 
-# 🌍 IMPACT UNTUK INDONESIA
+# 🌍 IMPACT FOR INDONESIA
 
-GarudaShield AI dapat membantu:
+GarudaShield AI aims to:
 
-✅ Mengurangi korban phishing
-✅ Mengurangi penyebaran judol
-✅ Meningkatkan keamanan digital masyarakat
-✅ Membantu edukasi cyber security nasional
-✅ Mendukung Indonesia Emas 2045
+✅ Reduce phishing victims
+✅ Help fight illegal gambling websites
+✅ Improve digital security awareness
+✅ Educate citizens about cybersecurity
+✅ Support Indonesia Emas 2045 vision
 
 ---
 
 # 🔮 FUTURE DEVELOPMENT
 
-Fitur masa depan:
+Future features planned:
 
 * Real AI model integration
 * Browser extension
 * Mobile application
 * National scam database
-* Realtime attack map
+* Real-time cyber attack map
 * OCR screenshot scanner
-* AI chatbot security assistant
+* AI cybersecurity assistant chatbot
 * Discord integration
 * Community reporting system
 
 ---
 
-# 🏆 HACKATHON
+# 🏆 HACKATHON PROJECT
 
-Project ini dibuat untuk event hackathon bertema:
+This project was created for a hackathon with the theme:
 
-```txt
-MEMAJUKAN INDONESIA
+```txt id="d7m43o"
+ADVANCING INDONESIA
 ```
 
-Dengan fokus:
+Focused on:
 
-```txt
-Cyber Security & Digital Protection
+```txt id="cqjlwm"
+Cybersecurity & Digital Protection
 ```
 
 ---
@@ -344,3 +344,4 @@ MIT License
 # 🇮🇩 GARUDASHIELD AI
 
 "Protecting Indonesia's Digital Future"
+
