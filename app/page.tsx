@@ -2,20 +2,22 @@
 import React from 'react';
 
 export default function GarudaShieldAI() {
+
   const [input, setInput] = React.useState('');
 
   const [result, setResult] = React.useState<{
-  status: string;
-  risk: string;
-  message: string;
-  confidence: string;
-  keywords: string[];
-  threat: string;
+    status: string;
+    risk: string;
+    message: string;
+    confidence: string;
+    keywords: string[];
+    threat: string;
   } | null>(null);
 
   const [loading, setLoading] = React.useState(false);
 
   const scanLink = async () => {
+
     setLoading(true);
 
     const res = await fetch('/api/scan', {
@@ -31,20 +33,23 @@ export default function GarudaShieldAI() {
     const data = await res.json();
 
     setResult({
-     status: data.status,
-     risk: `${data.score}%`,
-     message: data.analysis,
-     confidence: data.aiConfidence,
-     keywords: data.detectedKeywords,
-     threat: data.threatType
-   });
+      status: data.status,
+      risk: `${data.score}%`,
+      message: data.analysis,
+      confidence: data.aiConfidence,
+      keywords: data.detectedKeywords,
+      threat: data.threatType
+    });
 
     setLoading(false);
+
   };
 
   return (
+
     <div className="min-h-screen bg-black text-white overflow-hidden">
 
+      {/* BACKGROUND */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-900/30 via-black to-red-500/10" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-10">
@@ -53,6 +58,7 @@ export default function GarudaShieldAI() {
         <nav className="flex items-center justify-between mb-10">
 
           <div>
+
             <h1 className="text-3xl font-black tracking-wide text-red-500">
               GARUDASHIELD AI
             </h1>
@@ -60,6 +66,7 @@ export default function GarudaShieldAI() {
             <p className="text-sm text-gray-400">
               National Cyber Protection System
             </p>
+
           </div>
 
           <button className="bg-red-600 hover:bg-red-500 transition px-5 py-2 rounded-2xl font-semibold shadow-lg shadow-red-500/30">
@@ -68,10 +75,11 @@ export default function GarudaShieldAI() {
 
         </nav>
 
-        {/* SYSTEM STATUS */}
+        {/* STATUS */}
         <div className="flex gap-4 mb-10 flex-wrap">
 
           <div className="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-2xl">
+
             <p className="text-xs text-gray-500">
               Threat Monitoring
             </p>
@@ -79,9 +87,11 @@ export default function GarudaShieldAI() {
             <h3 className="font-bold text-green-400">
               ACTIVE
             </h3>
+
           </div>
 
           <div className="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-2xl">
+
             <p className="text-xs text-gray-500">
               AI Engine
             </p>
@@ -89,9 +99,11 @@ export default function GarudaShieldAI() {
             <h3 className="font-bold text-green-400">
               ONLINE
             </h3>
+
           </div>
 
           <div className="bg-zinc-900 border border-zinc-800 px-4 py-3 rounded-2xl">
+
             <p className="text-xs text-gray-500">
               National Shield
             </p>
@@ -99,11 +111,12 @@ export default function GarudaShieldAI() {
             <h3 className="font-bold text-red-400">
               PROTECTED
             </h3>
+
           </div>
 
         </div>
 
-        {/* MAIN SECTION */}
+        {/* MAIN */}
         <div className="grid lg:grid-cols-2 gap-10 items-center">
 
           {/* LEFT */}
@@ -154,6 +167,7 @@ export default function GarudaShieldAI() {
           {/* RIGHT */}
           <div className="bg-zinc-950/80 border border-red-500/20 rounded-3xl p-6 shadow-2xl shadow-red-500/10 backdrop-blur-xl">
 
+            {/* HEADER */}
             <div className="flex items-center justify-between mb-6">
 
               <h3 className="text-2xl font-black">
@@ -170,6 +184,7 @@ export default function GarudaShieldAI() {
 
             </div>
 
+            {/* INPUT */}
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
@@ -177,6 +192,7 @@ export default function GarudaShieldAI() {
               className="w-full h-36 bg-black border border-zinc-800 rounded-2xl p-4 outline-none focus:border-red-500 resize-none"
             />
 
+            {/* BUTTON */}
             <button
               onClick={scanLink}
               className="w-full mt-5 bg-red-600 hover:bg-red-500 transition py-4 rounded-2xl font-black text-lg"
@@ -195,6 +211,8 @@ export default function GarudaShieldAI() {
                 className={`mt-6 rounded-2xl p-5 border ${
                   result.status === 'DANGER'
                     ? 'bg-red-500/10 border-red-500/30'
+                    : result.status === 'WARNING'
+                    ? 'bg-yellow-500/10 border-yellow-500/30'
                     : 'bg-green-500/10 border-green-500/30'
                 }`}
               >
@@ -205,6 +223,8 @@ export default function GarudaShieldAI() {
 
                     {result.status === 'DANGER'
                       ? '⚠️ Ancaman Terdeteksi'
+                      : result.status === 'WARNING'
+                      ? '⚠️ Aktivitas Mencurigakan'
                       : '✅ Aman'}
 
                   </h4>
@@ -219,12 +239,65 @@ export default function GarudaShieldAI() {
                   {result.message}
                 </p>
 
-                <div className="mt-4 text-sm text-gray-400 leading-relaxed">
+                {/* AI INFO */}
+                <div className="mt-5 space-y-3 text-sm">
 
-                  Sistem mendeteksi pola domain mencurigakan,
-                  redirect abnormal, dan keyword berbahaya yang
-                  sering digunakan pada aktivitas phishing
-                  dan judi online.
+                  <div className="flex justify-between">
+
+                    <span className="text-gray-500">
+                      Threat Type
+                    </span>
+
+                    <span className="text-red-400 font-bold">
+                      {result.threat}
+                    </span>
+
+                  </div>
+
+                  <div className="flex justify-between">
+
+                    <span className="text-gray-500">
+                      AI Confidence
+                    </span>
+
+                    <span className="text-green-400 font-bold">
+                      {result.confidence}
+                    </span>
+
+                  </div>
+
+                  <div>
+
+                    <span className="text-gray-500">
+                      Detected Keywords
+                    </span>
+
+                    <div className="flex flex-wrap gap-2 mt-2">
+
+                      {result.keywords.map((keyword) => (
+
+                        <span
+                          key={keyword}
+                          className="bg-red-500/20 text-red-300 px-2 py-1 rounded-lg text-xs"
+                        >
+                          {keyword}
+                        </span>
+
+                      ))}
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                {/* AI ANALYSIS */}
+                <div className="mt-5 text-sm text-gray-400 leading-relaxed">
+
+                  Sistem AI mendeteksi pola domain mencurigakan,
+                  redirect abnormal, keyword phishing, dan
+                  perilaku digital berbahaya yang sering digunakan
+                  dalam aktivitas scam dan judi online.
 
                 </div>
 
@@ -232,7 +305,47 @@ export default function GarudaShieldAI() {
 
             )}
 
-            {/* LIVE THREAT FEED */}
+            {/* QR SCAM DETECTOR */}
+            <div className="mt-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
+
+              <div className="flex items-center justify-between mb-4">
+
+                <h4 className="font-black text-xl">
+                  QR Scam Detector
+                </h4>
+
+                <span className="text-xs text-green-400">
+                  AI READY
+                </span>
+
+              </div>
+
+              <div className="border-2 border-dashed border-zinc-700 rounded-2xl p-8 text-center">
+
+                <div className="text-5xl mb-4">
+                  📱
+                </div>
+
+                <h5 className="font-bold text-lg mb-2">
+                  Upload QR Code
+                </h5>
+
+                <p className="text-gray-500 text-sm mb-4">
+
+                  Deteksi QR phishing, fake payment,
+                  dan scam QRIS otomatis.
+
+                </p>
+
+                <button className="bg-red-600 hover:bg-red-500 transition px-5 py-3 rounded-2xl font-bold">
+                  Scan QR
+                </button>
+
+              </div>
+
+            </div>
+
+            {/* LIVE FEED */}
             <div className="mt-6 bg-black/60 border border-zinc-800 rounded-2xl p-4">
 
               <div className="flex items-center justify-between mb-4">
@@ -293,6 +406,87 @@ export default function GarudaShieldAI() {
 
         </div>
 
+        {/* DARK WEB MONITOR */}
+        <div className="mt-20 bg-zinc-950 border border-red-500/20 rounded-3xl p-8">
+
+          <div className="flex items-center justify-between mb-8">
+
+            <div>
+
+              <h3 className="text-3xl font-black text-red-500">
+                DARK WEB MONITOR
+              </h3>
+
+              <p className="text-gray-400 mt-2">
+                Monitoring kebocoran data & aktivitas ilegal realtime
+              </p>
+
+            </div>
+
+            <div className="text-green-400 text-sm flex items-center gap-2">
+
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+
+              ACTIVE
+
+            </div>
+
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+
+            <div className="bg-black border border-zinc-800 rounded-2xl p-5">
+
+              <h4 className="text-red-400 font-bold mb-3">
+                Email Leaks
+              </h4>
+
+              <div className="text-4xl font-black">
+                18,293
+              </div>
+
+              <p className="text-gray-500 mt-2 text-sm">
+                Data ditemukan di forum ilegal
+              </p>
+
+            </div>
+
+            <div className="bg-black border border-zinc-800 rounded-2xl p-5">
+
+              <h4 className="text-red-400 font-bold mb-3">
+                Scam Campaigns
+              </h4>
+
+              <div className="text-4xl font-black">
+                421
+              </div>
+
+              <p className="text-gray-500 mt-2 text-sm">
+                Aktivitas phishing terlacak
+              </p>
+
+            </div>
+
+            <div className="bg-black border border-zinc-800 rounded-2xl p-5">
+
+              <h4 className="text-red-400 font-bold mb-3">
+                Judol Domains
+              </h4>
+
+              <div className="text-4xl font-black">
+                7,812
+              </div>
+
+              <p className="text-gray-500 mt-2 text-sm">
+                Domain berbahaya diblokir
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
         {/* STATS */}
         <div className="grid md:grid-cols-3 gap-6 mt-20">
 
@@ -337,5 +531,7 @@ export default function GarudaShieldAI() {
       </div>
 
     </div>
+
   );
+
 }
