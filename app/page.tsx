@@ -5,9 +5,12 @@ export default function GarudaShieldAI() {
   const [input, setInput] = React.useState('');
 
   const [result, setResult] = React.useState<{
-    status: string;
-    risk: string;
-    message: string;
+  status: string;
+  risk: string;
+  message: string;
+  confidence: string;
+  keywords: string[];
+  threat: string;
   } | null>(null);
 
   const [loading, setLoading] = React.useState(false);
@@ -28,10 +31,13 @@ export default function GarudaShieldAI() {
     const data = await res.json();
 
     setResult({
-      status: data.safe ? 'SAFE' : 'DANGER',
-      risk: data.risk,
-      message: data.result
-    });
+     status: data.status,
+     risk: `${data.score}%`,
+     message: data.analysis,
+     confidence: data.aiConfidence,
+     keywords: data.detectedKeywords,
+     threat: data.threatType
+   });
 
     setLoading(false);
   };
