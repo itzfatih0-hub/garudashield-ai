@@ -4,28 +4,43 @@ export async function POST(req) {
 
   const text = body.text.toLowerCase();
 
+  // =========================
+  // SUSPICIOUS KEYWORDS
+  // =========================
+
   const suspiciousKeywords = [
     'slot',
     'gacor',
     'casino',
     'bonus',
+    'deposit',
+    'jackpot',
+    'maxwin',
     'free',
     'hadiah',
-    'deposit',
-    'cuan',
-    'maxwin',
-    'jackpot',
     'claim',
-    'login',
+    'crypto',
+    'wallet',
+    'otp',
     'bank',
+    'login',
+    'verify',
+    'verification',
+    'discord',
+    'nitro',
+    'steam',
+    'gift',
+    'free nitro',
     'dana',
     'ovo',
     'qris',
-    'crypto',
     'pinjaman',
-    'otp',
     'transfer'
   ];
+
+  // =========================
+  // SUSPICIOUS DOMAINS
+  // =========================
 
   const suspiciousDomains = [
     '.xyz',
@@ -34,20 +49,52 @@ export async function POST(req) {
     '.win',
     '.bet',
     '.vip',
-    '.ru'
+    '.ru',
+    '.shop',
+    '.live'
   ];
 
   // =========================
-  // AI SECURITY SCORE
-  // 100 = AMAN
-  // 0 = BAHAYA
+  // TRUSTED DOMAINS
+  // =========================
+
+  const trustedDomains = [
+    'google.com',
+    'youtube.com',
+    'github.com',
+    'discord.com',
+    'openai.com',
+    'railway.app',
+    'vercel.app'
+  ];
+
+  // =========================
+  // START SCORE
+  // 100 = SAFE
   // =========================
 
   let score = 100;
 
   let detectedKeywords = [];
 
+  // =========================
+  // TRUST CHECK
+  // =========================
+
+  const trusted = trustedDomains.some(domain =>
+    text.includes(domain)
+  );
+
+  if (trusted) {
+
+    score += 5;
+
+  }
+
+  // =========================
   // KEYWORD ANALYSIS
+  // =========================
+
   suspiciousKeywords.forEach(keyword => {
 
     if (text.includes(keyword)) {
@@ -60,7 +107,10 @@ export async function POST(req) {
 
   });
 
+  // =========================
   // DOMAIN ANALYSIS
+  // =========================
+
   suspiciousDomains.forEach(domain => {
 
     if (text.includes(domain)) {
@@ -71,31 +121,89 @@ export async function POST(req) {
 
   });
 
-  // HTTP TIDAK AMAN
+  // =========================
+  // HTTP = UNSAFE
+  // =========================
+
   if (text.includes('http://')) {
 
     score -= 15;
 
   }
 
-  // TEXT TERLALU PANJANG
-  if (text.length > 120) {
+  // =========================
+  // PHISHING PATTERNS
+  // =========================
 
-    score -= 8;
+  if (
+    text.includes('discord') &&
+    text.includes('verify')
+  ) {
+
+    score -= 45;
 
   }
 
-  // LOGIN BANK = PHISHING
   if (
     text.includes('login') &&
     text.includes('bank')
+  ) {
+
+    score -= 40;
+
+  }
+
+  if (
+    text.includes('free') &&
+    text.includes('nitro')
+  ) {
+
+    score -= 35;
+
+  }
+
+  if (
+    text.includes('steam') &&
+    text.includes('gift')
+  ) {
+
+    score -= 30;
+
+  }
+
+  // =========================
+  // FAKE DOMAIN DETECTION
+  // =========================
+
+  if (
+    text.includes('discord') &&
+    !text.includes('discord.com')
   ) {
 
     score -= 25;
 
   }
 
-  // BATAS MINIMUM
+  // =========================
+  // URL TOO LONG
+  // =========================
+
+  if (text.length > 100) {
+
+    score -= 10;
+
+  }
+
+  // =========================
+  // LIMIT SCORE
+  // =========================
+
+  if (score > 100) {
+
+    score = 100;
+
+  }
+
   if (score < 0) {
 
     score = 0;
@@ -103,7 +211,7 @@ export async function POST(req) {
   }
 
   // =========================
-  // STATUS AI
+  // STATUS
   // =========================
 
   let status = 'SAFE';
@@ -142,7 +250,7 @@ export async function POST(req) {
   }
 
   // =========================
-  // ANALYSIS MESSAGE
+  // ANALYSIS
   // =========================
 
   let analysis =
@@ -151,14 +259,14 @@ export async function POST(req) {
   if (status === 'WARNING') {
 
     analysis =
-      'AI menemukan pola mencurigakan yang perlu diperiksa lebih lanjut.';
+      'AI menemukan pola domain dan aktivitas mencurigakan yang berpotensi phishing atau scam.';
 
   }
 
   if (status === 'DANGER') {
 
     analysis =
-      'AI mendeteksi pola phishing, scam, atau judi online berisiko tinggi.';
+      'AI mendeteksi indikasi phishing, impersonasi brand, atau scam berisiko tinggi.';
 
   }
 
@@ -175,7 +283,7 @@ export async function POST(req) {
     score,
 
     aiConfidence: `${Math.floor(
-      85 + Math.random() * 14
+      90 + Math.random() * 9
     )}%`,
 
     detectedKeywords,
