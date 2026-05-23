@@ -21,7 +21,10 @@ export async function POST(req) {
     'dana',
     'ovo',
     'qris',
-    'crypto'
+    'crypto',
+    'pinjaman',
+    'otp',
+    'transfer'
   ];
 
   const suspiciousDomains = [
@@ -30,57 +33,138 @@ export async function POST(req) {
     '.click',
     '.win',
     '.bet',
-    '.vip'
+    '.vip',
+    '.ru'
   ];
 
-  let score = 0;
+  // =========================
+  // AI SECURITY SCORE
+  // 100 = AMAN
+  // 0 = BAHAYA
+  // =========================
+
+  let score = 100;
 
   let detectedKeywords = [];
 
+  // KEYWORD ANALYSIS
   suspiciousKeywords.forEach(keyword => {
 
     if (text.includes(keyword)) {
-      score += 12;
+
+      score -= 12;
+
       detectedKeywords.push(keyword);
+
     }
 
   });
 
+  // DOMAIN ANALYSIS
   suspiciousDomains.forEach(domain => {
 
     if (text.includes(domain)) {
-      score += 20;
+
+      score -= 20;
+
     }
 
   });
 
+  // HTTP TIDAK AMAN
   if (text.includes('http://')) {
-    score += 15;
+
+    score -= 15;
+
   }
 
+  // TEXT TERLALU PANJANG
   if (text.length > 120) {
-    score += 8;
+
+    score -= 8;
+
   }
 
+  // LOGIN BANK = PHISHING
   if (
     text.includes('login') &&
     text.includes('bank')
   ) {
-    score += 25;
+
+    score -= 25;
+
   }
 
-  if (score > 100) {
-    score = 100;
+  // BATAS MINIMUM
+  if (score < 0) {
+
+    score = 0;
+
   }
+
+  // =========================
+  // STATUS AI
+  // =========================
 
   let status = 'SAFE';
 
-  if (score >= 70) {
+  if (score <= 25) {
+
     status = 'DANGER';
+
   }
-  else if (score >= 40) {
+  else if (score <= 60) {
+
     status = 'WARNING';
+
   }
+  else {
+
+    status = 'SAFE';
+
+  }
+
+  // =========================
+  // THREAT TYPE
+  // =========================
+
+  let threatType = 'Safe Traffic';
+
+  if (status === 'DANGER') {
+
+    threatType = 'High Risk Threat';
+
+  }
+  else if (status === 'WARNING') {
+
+    threatType = 'Suspicious Activity';
+
+  }
+
+  // =========================
+  // ANALYSIS MESSAGE
+  // =========================
+
+  let analysis =
+    'Tidak ditemukan indikasi ancaman digital berbahaya.';
+
+  if (status === 'WARNING') {
+
+    analysis =
+      'AI menemukan pola mencurigakan yang perlu diperiksa lebih lanjut.';
+
+  }
+
+  if (status === 'DANGER') {
+
+    analysis =
+      'AI mendeteksi pola phishing, scam, atau judi online berisiko tinggi.';
+
+  }
+
+  // =========================
+  // RESPONSE
+  // =========================
 
   return Response.json({
 
@@ -91,23 +175,14 @@ export async function POST(req) {
     score,
 
     aiConfidence: `${Math.floor(
-      80 + Math.random() * 19
+      85 + Math.random() * 14
     )}%`,
 
     detectedKeywords,
 
-    analysis: status === 'DANGER'
-      ? 'AI mendeteksi pola phishing, judi online, atau scam berisiko tinggi.'
-      : status === 'WARNING'
-      ? 'AI menemukan pola mencurigakan yang perlu diperiksa lebih lanjut.'
-      : 'Tidak ditemukan indikasi ancaman digital berbahaya.',
+    analysis,
 
-    threatType:
-      score >= 70
-        ? 'High Risk Threat'
-        : score >= 40
-        ? 'Suspicious Activity'
-        : 'Safe Traffic'
+    threatType
 
   });
 
