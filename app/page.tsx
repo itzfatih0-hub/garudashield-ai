@@ -487,6 +487,108 @@ export default function GarudaShieldAI() {
 
         </div>
 
+        {/* AI FLOW SYSTEM */}
+
+<div className="mt-20">
+
+  <div className="text-center mb-12">
+
+    <h3 className="text-4xl font-black">
+      HOW GARUDASHIELD AI WORKS
+    </h3>
+
+    <p className="text-gray-400 mt-3">
+      Sistem AI nasional untuk mendeteksi ancaman digital realtime
+    </p>
+
+  </div>
+
+  <div className="grid md:grid-cols-4 gap-6">
+
+    {/* STEP 1 */}
+    <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+
+      <div className="text-5xl mb-4">
+        🌐
+      </div>
+
+      <h4 className="font-black text-xl mb-3">
+        URL Analysis
+      </h4>
+
+      <p className="text-gray-400 text-sm leading-relaxed">
+
+        AI menganalisis link, domain,
+        dan pola URL mencurigakan.
+
+      </p>
+
+    </div>
+
+    {/* STEP 2 */}
+    <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+
+      <div className="text-5xl mb-4">
+        🧠
+      </div>
+
+      <h4 className="font-black text-xl mb-3">
+        AI Detection
+      </h4>
+
+      <p className="text-gray-400 text-sm leading-relaxed">
+
+        Machine learning mendeteksi
+        phishing, scam, dan judol.
+
+      </p>
+
+    </div>
+
+    {/* STEP 3 */}
+    <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+
+      <div className="text-5xl mb-4">
+        🕶️
+      </div>
+
+      <h4 className="font-black text-xl mb-3">
+        Dark Web Check
+      </h4>
+
+      <p className="text-gray-400 text-sm leading-relaxed">
+
+        Sistem mengecek kebocoran data
+        dan aktivitas ilegal digital.
+
+      </p>
+
+    </div>
+
+    {/* STEP 4 */}
+    <div className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+
+      <div className="text-5xl mb-4">
+        🛡️
+      </div>
+
+      <h4 className="font-black text-xl mb-3">
+        Threat Protection
+      </h4>
+
+      <p className="text-gray-400 text-sm leading-relaxed">
+
+        User menerima skor keamanan
+        dan perlindungan realtime.
+
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
         {/* STATS */}
         <div className="grid md:grid-cols-3 gap-6 mt-20">
 
